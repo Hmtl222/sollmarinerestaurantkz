@@ -1,0 +1,55 @@
+@keyframes pulseSlow {
+    0%, 100% { opacity: 1; transform: scale(1.02); }
+    50% { opacity: 0.85; transform: scale(1); }
+}
+
+.animate-pulse-slow {
+    animation: pulseSlow 8s ease-in-out infinite;
+}
+
+/* Кастомный скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #070D19;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #C5A880;
+}
+/* Плавное открытие мобильного меню */
+#mobile-menu.active {
+    transform: translateX(0) !important;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+@media (max-width: 768px) {
+    .menu-card {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+    }
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img, video, div, section {
+    max-width: 100%;
+    box-sizing: border-box;
+}

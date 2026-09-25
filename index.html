@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sollmarine — Ресторан морской кухни & Стейк-хаус</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#070D19] text-[#E2E8F0] font-sans antialiased selection:bg-[#C5A880] selection:text-[#070D19] overflow-x-hidden">
+
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-12 flex items-center justify-between bg-[#070D19]/80 backdrop-blur-md border-b border-white/5">
+        <a href="#" class="flex items-center gap-2 text-2xl font-serif tracking-wider text-white hover:scale-105 transition-transform">
+            <span class="text-[#C5A880]"><i class="fa-solid fa-anchor"></i></span> SOLLMARINE
+        </a>
+        
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-medium tracking-wide">
+            <a href="#about" class="hover:text-[#C5A880] transition-colors">О ресторане</a>
+            <a href="#menu" class="hover:text-[#C5A880] transition-colors">Меню</a>
+            <a href="#delivery" class="hover:text-[#C5A880] transition-colors">Доставка</a>
+            <a href="#amenities" class="hover:text-[#C5A880] transition-colors">Удобства</a>
+            <a href="#gallery" class="hover:text-[#C5A880] transition-colors">Галерея</a>
+            <a href="#reviews" class="hover:text-[#C5A880] transition-colors">Отзывы</a>
+            <a href="#contacts" class="hover:text-[#C5A880] transition-colors">Контакты</a>
+        </nav>
+
+        <div class="flex items-center gap-4">
+            <button onclick="toggleCart()" class="relative p-2 text-white hover:text-[#C5A880] transition-colors transform hover:scale-110">
+                <i class="fa-solid fa-bag-shopping text-xl"></i>
+                <span id="cart-badge" class="absolute -top-1 -right-1 bg-[#C5A880] text-[#070D19] text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center hidden animate-bounce">0</span>
+            </button>
+            <button onclick="openBooking()" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-[#C5A880] to-[#DFC59E] text-[#070D19] px-5 py-2.5 rounded-full font-semibold text-sm hover:opacity-95 transition-all shadow-lg shadow-[#C5A880]/10 hover:scale-105">
+                <i class="fa-regular fa-calendar-days"></i> Бронь стола
+            </button>
+            <button onclick="toggleMobileMenu()" class="lg:hidden text-white text-2xl p-1">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-[#070D19] flex flex-col items-center justify-center gap-6 text-xl font-serif transition-transform duration-300 translate-x-full lg:hidden">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-2xl text-white"><i class="fa-solid fa-xmark"></i></button>
+        <a href="#about" onclick="toggleMobileMenu()" class="hover:text-[#C5A880]">О ресторане</a>
+        <a href="#menu" onclick="toggleMobileMenu()" class="hover:text-[#C5A880]">Меню</a>
+        <a href="#delivery" onclick="toggleMobileMenu()" class="hover:text-[#C5A880]">Доставка</a>
+        <a href="#amenities" onclick="toggleMobileMenu()" class="hover:text-[#C5A880]">Удобства</a>
+        <a href="#gallery" onclick="toggleMobileMenu()" class="hover:text-[#C5A880]">Галерея</a>
+        <a href="#reviews" onclick="toggleMobileMenu()" class="hover:text-[#C5A880]">Отзывы</a>
+        <a href="#contacts" onclick="toggleMobileMenu()" class="hover:text-[#C5A880]">Контакты</a>
+        <button onclick="toggleMobileMenu(); openBooking();" class="mt-4 bg-[#C5A880] text-[#070D19] px-8 py-3 rounded-full font-sans text-base font-semibold">Забронировать стол</button>
+    </div>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=2000" alt="Sollmarine Interior" class="w-full h-full object-cover object-center filter brightness-50 scale-105 animate-pulse-slow">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#070D19] via-[#070D19]/60 to-transparent"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1000">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#C5A880]/30 bg-[#C5A880]/10 text-[#C5A880] text-sm tracking-widest uppercase mb-6 backdrop-blur-sm animate-pulse">
+                <span>★</span> Ресторан морской кухни & Стейк-хаус <span>★</span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-white tracking-tight mb-6 leading-tight">
+                Свежесть моря <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A880] via-[#F3E5AB] to-[#C5A880]">в каждом блюде</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-[#94A3B8] max-w-2xl mx-auto mb-10 font-light">
+                Панорамный вид, изысканные деликатесы со всего мира, премиальные стейки и безупречный сервис в атмосфере абсолютного уюта.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="openBooking()" class="w-full sm:w-auto bg-gradient-to-r from-[#C5A880] to-[#DFC59E] text-[#070D19] px-8 py-4 rounded-full font-bold text-base hover:opacity-95 transition-all shadow-xl shadow-[#C5A880]/20 flex items-center justify-center gap-2 hover:scale-105">
+                    <i class="fa-regular fa-calendar-days"></i> Забронировать стол
+                </button>
+                <a href="#menu" class="w-full sm:w-auto border border-white/20 hover:border-[#C5A880] text-white px-8 py-4 rounded-full font-medium text-base hover:bg-white/5 transition-all text-center hover:scale-105">
+                    Смотреть меню
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right" data-aos-duration="800">
+                <span class="text-[#C5A880] text-sm tracking-widest uppercase font-semibold block mb-3">О нас</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-snug">
+                    Искусство гастрономии у морских берегов
+                </h2>
+                <p class="text-[#94A3B8] mb-6 leading-relaxed font-light text-base sm:text-lg">
+                    Sollmarine — это пространство, где морская свежесть встречается с традициями высокой кухни. Наш шеф-повар создает кулинарные шедевры, используя только отборные морепродукты, премиальное мясо и свежайшие ингредиенты.
+                </p>
+                <div class="grid grid-cols-3 gap-4 border-t border-b border-white/10 py-6 my-6">
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-serif font-bold text-[#C5A880]">4.9</div>
+                        <div class="text-xs text-[#94A3B8] uppercase tracking-wider mt-1">Рейтинг гостей</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-serif font-bold text-[#C5A880]">92</div>
+                        <div class="text-xs text-[#94A3B8] uppercase tracking-wider mt-1">Места в зале</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-serif font-bold text-[#C5A880]">VIP</div>
+                        <div class="text-xs text-[#94A3B8] uppercase tracking-wider mt-1">Отдельные кабинки</div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-4 text-sm text-[#E2E8F0]">
+                    <span class="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-lg border border-white/5"><i class="fa-solid fa-panorama text-[#C5A880]"></i> Панорамный вид</span>
+                    <span class="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-lg border border-white/5"><i class="fa-solid fa-music text-[#C5A880]"></i> Живая музыка</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4" data-aos="fade-left" data-aos-duration="800">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" alt="Интерьер Sollmarine" class="rounded-2xl object-cover w-full h-64 sm:h-80 shadow-2xl hover:scale-[1.02] transition-transform duration-500">
+                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=800" alt="Атмосфера ресторана" class="rounded-2xl object-cover w-full h-64 sm:h-80 shadow-2xl mt-8 hover:scale-[1.02] transition-transform duration-500">
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-24 px-6 md:px-12 bg-[#0B132B]/50 border-y border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-[#C5A880] text-sm tracking-widest uppercase font-semibold block mb-3">Изысканный выбор</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4">Наше Меню</h2>
+                <p class="text-[#94A3B8]">Каждое блюдо — это гармония вкуса, свежести и авторского исполнения.</p>
+            </div>
+
+            <div id="menu-categories" class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-12" data-aos="fade-up"></div>
+
+            <div id="menu-items-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto"></div>
+        </div>
+    </section>
+
+    <section id="delivery" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="bg-gradient-to-br from-[#0B132B] to-[#121B38] border border-[#C5A880]/20 rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-2xl" data-aos="zoom-in" data-aos-duration="800">
+            <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-[#C5A880]/5 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="max-w-xl relative z-10">
+                <span class="text-[#C5A880] text-sm tracking-widest uppercase font-semibold block mb-3">Быстро и удобно</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mb-6">Доставка из Sollmarine</h2>
+                <p class="text-[#94A3B8] mb-8 font-light">
+                    Наслаждайтесь любимыми блюдами у себя дома. Пицца, стейки, рыба и морепродукты с быстрой доставкой по всему городу.
+                </p>
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <span class="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-sm text-white">🍕 Пицца</span>
+                    <span class="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-sm text-white">🥩 Стейки</span>
+                    <span class="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-sm text-white">🐟 Рыба</span>
+                </div>
+                <button onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})" class="bg-gradient-to-r from-[#C5A880] to-[#DFC59E] text-[#070D19] px-8 py-3.5 rounded-full font-bold text-base hover:opacity-95 transition-all shadow-lg shadow-[#C5A880]/20 hover:scale-105">
+                    Перейти к заказу
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="amenities" class="py-24 px-6 md:px-12 bg-[#0B132B]/30 border-y border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-[#C5A880] text-sm tracking-widest uppercase font-semibold block mb-3">Для вашего комфорта</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4">Удобства и Сервис</h2>
+                <p class="text-[#94A3B8]">Мы позаботились о каждой детали для вашего идеального отдыха.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-[#070D19] p-8 rounded-2xl border border-white/5 hover:border-[#C5A880]/30 transition-all group hover:-translate-y-2 duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-xl bg-[#C5A880]/10 text-[#C5A880] flex items-center justify-center text-2xl mb-6 group-hover:bg-[#C5A880] group-hover:text-[#070D19] transition-all">
+                        <i class="fa-solid fa-child-reaching"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-white mb-3">Детская комната</h3>
+                    <p class="text-[#94A3B8] text-sm leading-relaxed">Безопасная игровая зона, специальное детское меню, профессиональные аниматоры и мастер-классы.</p>
+                </div>
+                <div class="bg-[#070D19] p-8 rounded-2xl border border-white/5 hover:border-[#C5A880]/30 transition-all group hover:-translate-y-2 duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-xl bg-[#C5A880]/10 text-[#C5A880] flex items-center justify-center text-2xl mb-6 group-hover:bg-[#C5A880] group-hover:text-[#070D19] transition-all">
+                        <i class="fa-solid fa-couch"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-white mb-3">Уютные кабинки</h3>
+                    <p class="text-[#94A3B8] text-sm leading-relaxed">Отдельные кабинки для уединенных встреч, семейных ужинов и настольные игры.</p>
+                </div>
+                <div class="bg-[#070D19] p-8 rounded-2xl border border-white/5 hover:border-[#C5A880]/30 transition-all group hover:-translate-y-2 duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 rounded-xl bg-[#C5A880]/10 text-[#C5A880] flex items-center justify-center text-2xl mb-6 group-hover:bg-[#C5A880] group-hover:text-[#070D19] transition-all">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-white mb-3">Парковка и Wi-Fi</h3>
+                    <p class="text-[#94A3B8] text-sm leading-relaxed">Бесплатная охраняемая парковка на 20 мест и высокоскоростной Wi-Fi на всей территории.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+            <span class="text-[#C5A880] text-sm tracking-widest uppercase font-semibold block mb-3">Атмосфера</span>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4">Галерея интерьера</h2>
+            <p class="text-[#94A3B8]">Погрузитесь в эстетику нашего панорамного ресторана.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="overflow-hidden rounded-2xl shadow-xl" data-aos="zoom-in" data-aos-delay="100"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=600" class="rounded-2xl h-72 w-full object-cover hover:scale-110 transition-transform duration-500" alt="Интерьер 1"></div>
+            <div class="overflow-hidden rounded-2xl shadow-xl" data-aos="zoom-in" data-aos-delay="200"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=600" class="rounded-2xl h-72 w-full object-cover hover:scale-110 transition-transform duration-500" alt="Интерьер 2"></div>
+            <div class="overflow-hidden rounded-2xl shadow-xl" data-aos="zoom-in" data-aos-delay="300"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1WYNfh2fwTDfNDrQadKtowQFuJK2dwjQkGS4MMgpMn2Bm9dbZdF046lI&s=10" class="rounded-2xl h-72 w-full object-cover hover:scale-110 transition-transform duration-500" alt="Панорамный вид"></div>
+            <div class="overflow-hidden rounded-2xl shadow-xl" data-aos="zoom-in" data-aos-delay="400"><img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWl6ARzVSVM2eXng_E1TQic31lJcyJmaJDnCz14OgwiOTfm_z7AUFpvtzKvyd5eilAFb_jGfQ7e7vavVVlb7TVmmSBCleC1WFZ77_YcFjx-ZkZTXCNNCAhl2SkLS5vrwuGW4z4F6MqNQuKsX=s1360-w1360-h1020-rw" class="rounded-2xl h-72 w-full object-cover hover:scale-110 transition-transform duration-500" alt="Атмосфера"></div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-24 px-6 md:px-12 bg-[#0B132B]/30 border-y border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-[#C5A880] text-sm tracking-widest uppercase font-semibold block mb-3">Мнения гостей</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4">Отзывы клиентов</h2>
+                <div class="flex items-center justify-center gap-1 text-[#C5A880] text-lg mt-2">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <span class="text-white font-bold ml-2">4.9 / 5.0</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-[#070D19] p-8 rounded-2xl border border-white/5 hover:border-[#C5A880]/20 transition-all" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center gap-1 text-[#C5A880] text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-[#94A3B8] text-sm italic mb-6 leading-relaxed">“Невероятно вкусная рыба и морепродукты! Атмосфера потрясающая, панорамный вид завораживает. Обязательно вернемся снова!”</p>
+                    <div class="font-serif font-bold text-white">Айгуль К.</div>
+                </div>
+                <div class="bg-[#070D19] p-8 rounded-2xl border border-white/5 hover:border-[#C5A880]/20 transition-all" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-1 text-[#C5A880] text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-[#94A3B8] text-sm italic mb-6 leading-relaxed">“Отличный стейк-хаус и прекрасное обслуживание. Дети были в восторге от игровой комнаты и аниматоров.”</p>
+                    <div class="font-serif font-bold text-white">Тимур М.</div>
+                </div>
+                <div class="bg-[#070D19] p-8 rounded-2xl border border-white/5 hover:border-[#C5A880]/20 transition-all" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center gap-1 text-[#C5A880] text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-[#94A3B8] text-sm italic mb-6 leading-relaxed">“Заказывали доставку на дом — привезли всё горячим, упаковка премиальная, порции щедрые. Рекомендую суп Том-ям!”</p>
+                    <div class="font-serif font-bold text-white">Елена С.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <span class="text-[#C5A880] text-sm tracking-widest uppercase font-semibold block mb-3">Контакты</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-6">Ждем вас в гости</h2>
+                <div class="space-y-6 text-[#94A3B8] mb-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-[#C5A880]/10 text-[#C5A880] flex items-center justify-center shrink-0 mt-1"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <div class="text-white font-medium mb-1">Адрес ресторана</div>
+                            <p class="text-sm">микрорайон 5А, 4 (ЖК Twin Towers), Актау, Казахстан[cite: 2]</p>
+                            <div class="flex gap-4 mt-2">
+                                <a href="https://2gis.kz/aktau/firm/70000001101402112" target="_blank" class="text-[#C5A880] text-xs hover:underline flex items-center gap-1">
+                                    <i class="fa-solid fa-map-location-dot"></i> Открыть в 2GIS[cite: 2]
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-[#C5A880]/10 text-[#C5A880] flex items-center justify-center shrink-0 mt-1"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <div class="text-white font-medium mb-1">Телефон для связи</div>
+                            <p class="text-sm"><a href="tel:+77292000000" class="hover:text-white transition-colors">+7 (7292) 00-00-00</a></p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-[#C5A880]/10 text-[#C5A880] flex items-center justify-center shrink-0 mt-1"><i class="fa-solid fa-clock"></i></div>
+                        <div>
+                            <div class="text-white font-medium mb-1">Режим работы</div>
+                            <p class="text-sm">Ежедневно с 11:00 до 00:00</p>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="openBooking()" class="bg-gradient-to-r from-[#C5A880] to-[#DFC59E] text-[#070D19] px-8 py-3.5 rounded-full font-bold text-base hover:opacity-95 transition-all shadow-lg shadow-[#C5A880]/20 hover:scale-105">
+                    Забронировать стол
+                </button>
+            </div>
+            <div class="h-[400px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative bg-[#070D19]" data-aos="fade-left">
+                <iframe width="100%" height="100%" style="border:0;" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=51.1510%2C43.6375%2C51.1570%2C43.6415&amp;layer=mapnik&amp;marker=43.6395%2C51.1540"></iframe>
+                <div class="absolute bottom-3 left-3 bg-[#070D19]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 text-xs">
+                    <a href="https://2gis.kz/aktau/firm/70000001101402112" target="_blank" class="text-[#C5A880] hover:underline flex items-center gap-1.5 font-medium">
+                        <i class="fa-solid fa-diamond-turn-right"></i> Построить маршрут в 2GIS[cite: 2]
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#050912] border-t border-white/5 py-12 px-6 md:px-12 text-center text-[#94A3B8] text-sm">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2 text-xl font-serif tracking-wider text-white">
+                <span class="text-[#C5A880]"><i class="fa-solid fa-anchor"></i></span> SOLLMARINE
+            </div>
+            <div class="flex items-center gap-6 text-xl text-white">
+                <a href="https://instagram.com" target="_blank" class="hover:text-[#C5A880] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://t.me" target="_blank" class="hover:text-[#C5A880] transition-colors"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://whatsapp.com" target="_blank" class="hover:text-[#C5A880] transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-4 text-xs">
+                <span>Способы оплаты: Карты, Наличные, QR</span>
+                <span class="hidden sm:inline">•</span>
+                <span>© 2026 Sollmarine. Все права защищены.</span>
+            </div>
+        </div>
+    </footer>
+
+    <div id="booking-modal" class="fixed inset-0 z-50 bg-[#070D19]/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="bg-[#0B132B] border border-[#C5A880]/30 rounded-3xl p-8 max-w-md w-full relative shadow-2xl animate-fade-in">
+            <button onclick="closeBooking()" class="absolute top-6 right-6 text-white text-xl hover:text-[#C5A880]"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-2xl font-serif font-bold text-white mb-2">Бронирование столика</h3>
+            <p class="text-[#94A3B8] text-sm mb-6">Заполните данные, и мы свяжемся с вами для подтверждения.</p>
+            <form onsubmit="submitBooking(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-[#94A3B8] uppercase tracking-wider mb-2">Ваше имя</label>
+                    <input type="text" id="booking-name" required class="w-full bg-[#070D19] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#C5A880]" placeholder="Александр">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-[#94A3B8] uppercase tracking-wider mb-2">Телефон</label>
+                    <input type="tel" id="booking-phone" required class="w-full bg-[#070D19] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#C5A880]" placeholder="+7 (700) 000-00-00">
+                    <span id="phone-error" class="text-red-400 text-xs mt-1 hidden">Введите корректный номер телефона (минимум 7 цифр)</span>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-[#94A3B8] uppercase tracking-wider mb-2">Дата</label>
+                        <input type="date" id="booking-date" required class="w-full bg-[#070D19] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#C5A880]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-[#94A3B8] uppercase tracking-wider mb-2">Гостей</label>
+                        <select id="booking-guests" class="w-full bg-[#070D19] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#C5A880]">
+                            <option>1 гость</option>
+                            <option selected>2 гостя</option>
+                            <option>3-4 гостя</option>
+                            <option>5+ гостей</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="w-full mt-2 bg-gradient-to-r from-[#C5A880] to-[#DFC59E] text-[#070D19] py-3.5 rounded-xl font-bold hover:opacity-95 transition-all shadow-lg shadow-[#C5A880]/20">
+                    Забронировать
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-[#0B132B] border-l border-white/10 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300">
+        <div class="p-6 border-b border-white/10 flex items-center justify-between">
+            <h3 class="text-xl font-serif font-bold text-white">Ваш заказ</h3>
+            <button onclick="toggleCart()" class="text-white text-xl hover:text-[#C5A880]"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+        <div class="p-6 border-t border-white/10 bg-[#070D19]">
+            <div class="flex items-center justify-between text-lg font-bold text-white mb-4">
+                <span>Итого:</span>
+                <span id="cart-total" class="text-[#C5A880]">0 ₸</span>
+            </div>
+            <button onclick="checkout()" class="w-full bg-gradient-to-r from-[#C5A880] to-[#DFC59E] text-[#070D19] py-3.5 rounded-xl font-bold hover:opacity-95 transition-all shadow-lg shadow-[#C5A880]/20">
+                Оформить заказ
+            </button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100
+        });
+    </script>
+    <script src="index.js"></script>
+</body>
+</html>
